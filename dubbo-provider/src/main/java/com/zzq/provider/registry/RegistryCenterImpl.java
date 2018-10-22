@@ -21,7 +21,7 @@ public class RegistryCenterImpl implements IRegistryCenter {
         curatorFramework.start();
     }
 
-
+    @Override
     public void register(String serviceName, String serviceAddress) {
         //操作zk api
 
