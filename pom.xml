@@ -8,9 +8,11 @@
     <artifactId>custom-dubbo</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <name>自定义精简版的dubbo</name>
+
     <modules>
         <module>dubbo-provider</module>
-
+        <module>dubbo-consumer</module>
     </modules>
 
 
