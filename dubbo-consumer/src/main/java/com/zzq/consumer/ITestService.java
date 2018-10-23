@@ -1,4 +1,4 @@
-package com.zzq.provider;
+package com.zzq.consumer;
 
 public interface ITestService  {
     String test(String name);

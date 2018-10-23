@@ -1,4 +1,4 @@
-package com.zzq.provider.registry;
+package com.zzq.consumer.registry;
 
 public interface IServiceDiscovery {
 

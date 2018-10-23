@@ -1,4 +1,4 @@
-package com.zzq.provider;
+package com.zzq.consumer;
 
 public class TestServiceImpl implements ITestService {
     @Override

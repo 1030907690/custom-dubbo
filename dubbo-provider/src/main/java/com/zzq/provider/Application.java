@@ -3,7 +3,7 @@ package com.zzq.provider;
 import com.zzq.provider.registry.IRegistryCenter;
 import com.zzq.provider.registry.RegistryCenterImpl;
 
-public class Test {
+public class Application {
 
     public static void main(String[] args) throws Exception{
 

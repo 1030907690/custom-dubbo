@@ -1,4 +1,4 @@
-package com.zzq.provider.loadbalance;
+package com.zzq.consumer.loadbalance;
 
 import java.util.List;
 
