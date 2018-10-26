@@ -70,7 +70,8 @@ public class RpcServer {
                     pipeline.addLast("encoder",new ObjectEncoder());
                     pipeline.addLast("decoder",new ObjectDecoder(
                             Integer.MAX_VALUE,
-                            ClassResolvers.cacheDisabled(null)
+                            ClassResolvers.cacheDisabled(nul                            ClassResolvers.cacheDisabled(null)
+l)
                     ));*/
 
                     pipeline.addLast(new RpcServerHandler(handlerMap));
