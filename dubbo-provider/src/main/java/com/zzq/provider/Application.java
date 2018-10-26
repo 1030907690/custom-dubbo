@@ -2,7 +2,9 @@ package com.zzq.provider;
 
 import com.zzq.provider.registry.IRegistryCenter;
 import com.zzq.provider.registry.RegistryCenterImpl;
-
+/**
+ * 测试客户端
+ * **/
 public class Application {
 
     public static void main(String[] args) throws Exception{
