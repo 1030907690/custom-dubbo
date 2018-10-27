@@ -64,15 +64,14 @@ public class RpcServer {
                     ChannelPipeline pipeline = channel.pipeline();
 
                     //netty编程 关注handler
-                    /*pipeline.addLast(new LengthFieldBasedFrameDecoder(Integer.MAX_VALUE,
-                            0, 4, 0, 4));
-                    pipeline.addLast(new LengthFieldPrepender(4));
+                    pipeline.addLast("frameDecoder",new LengthFieldBasedFrameDecoder(
+                            Integer.MAX_VALUE,0,4,0,4
+                    ));
+                    pipeline.addLast("frameEncoder",new LengthFieldPrepender(4));
                     pipeline.addLast("encoder",new ObjectEncoder());
-                    pipeline.addLast("decoder",new ObjectDecoder(
-                            Integer.MAX_VALUE,
-                            ClassResolvers.cacheDisabled(nul                            ClassResolvers.cacheDisabled(null)
-l)
-                    ));*/
+                    pipeline.addLast("decoder",new ObjectDecoder(Integer.MAX_VALUE
+                            ,ClassResolvers.cacheDisabled(null)
+                    ));
 
                     pipeline.addLast(new RpcServerHandler(handlerMap));
                 }
