@@ -25,6 +25,12 @@
     </properties>
 
     <dependencies>
+
+        <dependency>
+            <groupId>com.zzq.provider.api</groupId>
+            <artifactId>dubbo-provider-api</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
         <dependency>
             <groupId>org.apache.curator</groupId>
             <artifactId>curator-framework</artifactId>

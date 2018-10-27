@@ -82,7 +82,8 @@ public class RpcServer {
             String ip = addrs[0];
             int port = Integer.parseInt(addrs[1]);
             ChannelFuture future = bootstrap.bind(ip,port).sync();
-            System.out.print("服务启动成功，等待客户端连接...");
+            System.out.println("服务启动成功，等待客户端连接...");
+            future.channel().closeFuture().sync();
         }catch (Exception e){
             e.printStackTrace();
         }

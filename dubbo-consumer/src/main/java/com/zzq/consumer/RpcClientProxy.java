@@ -1,6 +1,8 @@
 package com.zzq.consumer;
 
 import com.zzq.consumer.registry.IServiceDiscovery;
+
+import com.zzq.provider.api.bean.RpcRequest;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
@@ -24,7 +26,7 @@ public class RpcClientProxy {
         this.serviceDiscovery = serviceDiscovery;
     }
 
-    public <T> T create(Class<T> interfaceClass){
+    public <T> T create(final Class<T> interfaceClass){
         if(null != interfaceClass){
             return (T)Proxy.newProxyInstance(interfaceClass.getClassLoader(),
                     new Class<?>[]{interfaceClass},
@@ -50,7 +52,7 @@ public class RpcClientProxy {
                             int port = Integer.parseInt(address[1]);
 
                             //socket netty连
-                            RpcProxyHandler rpcProxyHandler = new RpcProxyHandler();
+                            final RpcProxyHandler rpcProxyHandler = new RpcProxyHandler();
 
 
                             EventLoopGroup group = new NioEventLoopGroup();
@@ -73,20 +75,28 @@ public class RpcClientProxy {
                                                 pipeline.addLast(rpcProxyHandler);
                                             }
                                         });
+                                System.out.println("host " + host + " prot " + port);
                                 ChannelFuture future = b.connect(host,port).sync();
                                 future.channel().writeAndFlush(request);
+                                //shutdown(group);
                                 future.channel().closeFuture().sync();
+                                return rpcProxyHandler.getRespone();
                             }catch (Exception e){
                                 e.printStackTrace();
                             }finally {
 
                             }
-
-
-                            return null;
+                            return rpcProxyHandler.getRespone();
                         }
                     });
         }
         return null;
     }
+
+
+    private void shutdown(EventLoopGroup group) {
+        group.shutdownGracefully();
+
+    }
+
 }

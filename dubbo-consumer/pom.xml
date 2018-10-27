@@ -37,6 +37,12 @@
             <version>${curator.recipes.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.zzq.provider.api</groupId>
+            <artifactId>dubbo-provider-api</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
     </dependencies>
 
 </project>

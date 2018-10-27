@@ -42,7 +42,7 @@ public class RegistryCenterImpl implements IRegistryCenter {
             String rsNode = curatorFramework.create().withMode(CreateMode.EPHEMERAL)
                     .forPath(addressPath,"0".getBytes());
 
-            System.out.print("service push success "+ rsNode);
+            System.out.println("service push success "+ rsNode);
 
 
 

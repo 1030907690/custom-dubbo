@@ -1,5 +1,6 @@
 package com.zzq.provider;
 
+import com.zzq.provider.api.ITestService;
 import com.zzq.provider.registry.IRegistryCenter;
 import com.zzq.provider.registry.RegistryCenterImpl;
 /**

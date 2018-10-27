@@ -2,6 +2,7 @@ package com.zzq.consumer;
 
 import com.zzq.consumer.registry.IServiceDiscovery;
 import com.zzq.consumer.registry.ServiceDiscoveryImpl;
+import com.zzq.provider.api.ITestService;
 
 public class Application {
 
