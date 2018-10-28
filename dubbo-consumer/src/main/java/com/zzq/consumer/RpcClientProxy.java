@@ -78,8 +78,8 @@ public class RpcClientProxy {
                                 System.out.println("host " + host + " prot " + port);
                                 ChannelFuture future = b.connect(host,port).sync();
                                 future.channel().writeAndFlush(request);
-                                //shutdown(group);
                                 future.channel().closeFuture().sync();
+                                shutdown(group);
                                 return rpcProxyHandler.getRespone();
                             }catch (Exception e){
                                 e.printStackTrace();

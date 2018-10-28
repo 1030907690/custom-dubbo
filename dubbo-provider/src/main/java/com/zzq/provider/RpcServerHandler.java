@@ -1,6 +1,7 @@
 package com.zzq.provider;
 
 import com.zzq.provider.api.bean.RpcRequest;
+import com.zzq.provider.api.bean.RpcResponse;
 import io.netty.channel.ChannelHandlerAdapter;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
@@ -25,7 +26,7 @@ public class RpcServerHandler extends ChannelInboundHandlerAdapter {
 
 
         System.out.println("server received data " + msg);
-        Object result = new Object();
+        RpcResponse result = new RpcResponse();
 
 
         //获得消费者传过来的数据
@@ -38,12 +39,13 @@ public class RpcServerHandler extends ChannelInboundHandlerAdapter {
                Object object = handlerMap.get(rpcRequest.getClassName());
               Method method = object.getClass().getMethod(rpcRequest.getMethodName()
                 ,rpcRequest.getTypes());
-                result = method.invoke(object,rpcRequest.getParams());
+             Object  data = method.invoke(object,rpcRequest.getParams());
+             result.setResult(data);
             }
         }catch (Exception e){
             e.printStackTrace();
         }
-        ctx.write("test");
+        ctx.write(result);
         ctx.flush();
         ctx.close();
 

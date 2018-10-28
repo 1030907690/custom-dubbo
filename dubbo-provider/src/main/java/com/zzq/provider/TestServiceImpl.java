@@ -8,7 +8,8 @@ public class TestServiceImpl implements ITestService {
 
     @Override
     public String test(String name) {
-        System.out.println("test method " + name);
-        return null;
+        String result = "test method " + name;
+        System.out.println(result);
+        return result;
     }
 }

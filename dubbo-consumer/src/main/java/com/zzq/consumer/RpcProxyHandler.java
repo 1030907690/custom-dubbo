@@ -1,5 +1,6 @@
 package com.zzq.consumer;
 
+import com.zzq.provider.api.bean.RpcResponse;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 
@@ -14,8 +15,10 @@ public class RpcProxyHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         System.out.println("client received  data "+msg );
+
+        RpcResponse rpcResponse = (RpcResponse)msg;
         //msg服务端发过来的内容
         //ctx 发送出去
-        this.respone = msg;
+        this.respone = rpcResponse.getResult();
     }
 }
