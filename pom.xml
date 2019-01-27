@@ -14,7 +14,7 @@
         <module>dubbo-provider-api</module>
         <module>dubbo-provider</module>
         <module>dubbo-consumer</module>
-        <module>netty-test</module>
+        <module>spring-test</module>
     </modules>
 
 
