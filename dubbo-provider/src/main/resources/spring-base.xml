@@ -9,11 +9,6 @@
 
 	 
 	 >
-  
-  	<!-- aop部分 start -->
-  	
-  	<!-- 支持注解aop -->
-  	<context:component-scan base-package="com.zzq.provider"/>
 
   <!-- spring ioc部分 start -->
 <!--    <bean id ="myTestBean" class= "com.zzq.core.test.entity.MyTestBean" >
@@ -24,4 +19,7 @@
 
 
 	<!-- spring ioc部分 end -->
+	
+	<import resource="application-customtag.xml"></import>
+
 </beans>
