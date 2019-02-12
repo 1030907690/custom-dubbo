@@ -1,5 +1,7 @@
 package com.zzq.provider;
 
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 /**
  * @author Zhou Zhong Qing
  * @Title: ${file_name}
@@ -11,6 +13,13 @@ public class StartProvider {
 
 
     public static void main(String[] args) {
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring-base.xml");
+
+        String[] beanNames = context.getBeanDefinitionNames();
+
+        for (String beanName :  beanNames) {
+            System.out.println("beanName: "+ beanName);
+        }
 
     }
 }

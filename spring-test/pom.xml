@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <!--被继承的父项目的构件标识符-->
+       <artifactId>custom-dubbo</artifactId>
+        <!--被继承的父项目的全球唯一标识符-->
+       <groupId>com.zzq.dubbo</groupId>
+        <!--被继承的父项目的版本-->
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <groupId>com.zzq.test</groupId>
+    <artifactId>spring-test</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <name>测试</name>
+    <properties>
+        <curator.framework.version>2.5.0</curator.framework.version>
+        <curator.recipes.version>2.5.0</curator.recipes.version>
+
+        <spring.version>5.0.8.RELEASE</spring.version>
+    </properties>
+
+    <dependencies>
+
+
+    </dependencies>
+
+</project>
