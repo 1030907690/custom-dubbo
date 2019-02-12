@@ -2,11 +2,11 @@
 <!-- 自定义标签的测试 -->
 <beans xmlns="http://www.springframework.org/schema/beans"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:myName="http://www.lexueba.com/schema/dubbo"
+    xmlns:myTagName="http://www.lexueba.com/schema/dubbo"
     xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
     http://www.lexueba.com/schema/dubbo http://www.lexueba.com/schema/dubbo.xsd">
         
- 	<myName:dubbo id = "dubbo" name = "ZhangSan" address = "127.0.0.1:2181"/>
+ 	<myTagName:dubbo id = "dubbo" name = "ZhangSan" address = "127.0.0.1:2181"/>
 </beans>
   
  
