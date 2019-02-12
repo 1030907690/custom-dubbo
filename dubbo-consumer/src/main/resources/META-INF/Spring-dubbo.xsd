@@ -12,6 +12,10 @@
             <attribute name="id" type="string"></attribute>
             <attribute name="name" type="string"></attribute>
             <attribute name="address" type="string"></attribute>
+            <attribute name="protocol" type="string"></attribute>
+            <attribute name="port" type="string"></attribute>
+            <attribute name="basePackage" type="string"></attribute>
+            <attribute name="timeout" type="string"></attribute>
         </complexType>
 
     </element>

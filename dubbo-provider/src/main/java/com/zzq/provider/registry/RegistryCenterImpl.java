@@ -12,12 +12,20 @@ public class RegistryCenterImpl implements IRegistryCenter {
 
     private CuratorFramework curatorFramework;
 
+    public  RegistryCenterImpl() {
+        this(null);
+    }
 
-    {
+    private String zkAddress;
 
+    public  RegistryCenterImpl(String zkAddress) {
+        this.zkAddress = zkAddress;
+        if(null == zkAddress || "".equals(zkAddress.trim())){
+            zkAddress = ZKConfig.CONNECTION_STR;
+        }
         curatorFramework = CuratorFrameworkFactory.builder()
-                .connectString(ZKConfig.CONNECTION_STR).sessionTimeoutMs(4000)
-                .retryPolicy(new ExponentialBackoffRetry(1000,10)).build();
+                .connectString(zkAddress).sessionTimeoutMs(4000)
+                .retryPolicy(new ExponentialBackoffRetry(1000, 10)).build();
         curatorFramework.start();
     }
 
@@ -26,27 +34,26 @@ public class RegistryCenterImpl implements IRegistryCenter {
         //操作zk api
 
         //增加节点
-        String servicePath = ZKConfig.ZK_REGISTER_PATH+"/"+serviceName;
+        String servicePath = ZKConfig.ZK_REGISTER_PATH + "/" + serviceName;
         try {
             //判断节点是否存在  不存在则创建
-            if(null == curatorFramework.checkExists().forPath(servicePath)){
+            if (null == curatorFramework.checkExists().forPath(servicePath)) {
                 //创建
                 curatorFramework.create().creatingParentsIfNeeded()
-                        .withMode(CreateMode.PERSISTENT).forPath(servicePath,"0".getBytes());
+                        .withMode(CreateMode.PERSISTENT).forPath(servicePath, "0".getBytes());
 
             }
 
             //有了节点后，对应接口的url
             //服务发布的地址
-            String addressPath = servicePath+"/"+serviceAddress;
+            String addressPath = servicePath + "/" + serviceAddress;
             String rsNode = curatorFramework.create().withMode(CreateMode.EPHEMERAL)
-                    .forPath(addressPath,"0".getBytes());
+                    .forPath(addressPath, "0".getBytes());
 
-            System.out.println("service push success "+ rsNode);
+            System.out.println("service push success " + rsNode);
 
 
-
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

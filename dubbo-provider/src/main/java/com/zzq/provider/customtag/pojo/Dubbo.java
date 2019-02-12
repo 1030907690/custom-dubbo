@@ -19,6 +19,16 @@ public class Dubbo {
     /*消费者调用超时设置为10秒*/
     private String timeout;
 
+    /*端口*/
+    private String port;
+
+    public String getPort() {
+        return port;
+    }
+
+    public void setPort(String port) {
+        this.port = port;
+    }
 
     public String getId() {
         return id;

@@ -6,7 +6,7 @@
     xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
     http://www.lexueba.com/schema/dubbo http://www.lexueba.com/schema/dubbo.xsd">
         
- 	<myTagName:dubbo id = "dubbo" name = "provider" address = "127.0.0.1:2181"/>
+ 	<myTagName:dubbo id = "dubbo" name = "provider" address = "127.0.0.1:2181" protocol="zookeeper" basePackage="com.zzq.provider" port="8080"  timeout="10000" />
 </beans>
   
  

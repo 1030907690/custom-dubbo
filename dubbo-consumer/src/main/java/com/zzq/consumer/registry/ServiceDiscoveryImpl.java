@@ -24,6 +24,14 @@ public class ServiceDiscoveryImpl implements IServiceDiscovery{
 
     }
 
+    public ServiceDiscoveryImpl(String zkAddress){
+        curatorFramework = CuratorFrameworkFactory.builder()
+                .connectString(zkAddress).sessionTimeoutMs(4000)
+                .retryPolicy(new ExponentialBackoffRetry(1000,10)).build();
+        curatorFramework.start();
+
+    }
+
     @Override
     public String discovery(String serviceName)     {
         String path = ZKConfig.ZK_REGISTER_PATH+"/"+serviceName;

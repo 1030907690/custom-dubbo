@@ -1,5 +1,9 @@
 package com.zzq.consumer;
 
+import com.zzq.consumer.customtag.pojo.Dubbo;
+import com.zzq.consumer.registry.IServiceDiscovery;
+import com.zzq.consumer.registry.ServiceDiscoveryImpl;
+import com.zzq.provider.api.ITestService;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
@@ -21,7 +25,13 @@ public class StartConsumer {
             System.out.println("beanName: "+ beanName);
         }
 
+        Dubbo dubbo = context.getBean(Dubbo.class);
 
-
+        IServiceDiscovery serviceDiscovery = new ServiceDiscoveryImpl(dubbo.getAddress());
+        RpcClientProxy rpcClientProxy = new RpcClientProxy(serviceDiscovery);
+        ITestService testService = rpcClientProxy.create(ITestService.class);
+        //System.out.println("testService "+ testService);
+        String obj = testService.test("hello ");
+        System.out.println(obj);
     }
 }
