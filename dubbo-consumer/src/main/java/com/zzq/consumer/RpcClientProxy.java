@@ -2,7 +2,7 @@ package com.zzq.consumer;
 
 import com.zzq.consumer.registry.IServiceDiscovery;
 
-import com.zzq.provider.api.bean.RpcRequest;
+import com.zzq.provider.bean.RpcRequest;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;

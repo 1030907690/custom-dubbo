@@ -19,7 +19,8 @@
 
 
 	<!-- spring ioc部分 end -->
-	
+	<bean id="customBeanFactoryPostProcessor" class="com.zzq.consumer.scan.CustomBeanFactoryPostProcessor"></bean>
+
 	<import resource="application-customtag.xml"></import>
 
 </beans>

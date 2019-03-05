@@ -1,6 +1,6 @@
 package com.zzq.consumer;
 
-import com.zzq.provider.api.bean.RpcResponse;
+import com.zzq.provider.bean.RpcResponse;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 

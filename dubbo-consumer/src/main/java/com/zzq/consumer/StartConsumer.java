@@ -3,7 +3,10 @@ package com.zzq.consumer;
 import com.zzq.consumer.customtag.pojo.Dubbo;
 import com.zzq.consumer.registry.IServiceDiscovery;
 import com.zzq.consumer.registry.ServiceDiscoveryImpl;
+import com.zzq.consumer.scan.ClassPathMapperScanner;
+import com.zzq.consumer.scan.CustomBeanFactoryPostProcessor;
 import com.zzq.provider.api.ITestService;
+import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
