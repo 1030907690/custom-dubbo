@@ -1,11 +1,9 @@
 package com.zzq.provider;
 
-import com.zzq.provider.api.bean.RpcRequest;
-import com.zzq.provider.api.bean.RpcResponse;
-import io.netty.channel.ChannelHandlerAdapter;
+import com.zzq.provider.bean.RpcRequest;
+import com.zzq.provider.bean.RpcResponse;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
-import io.netty.channel.ChannelPipeline;
 
 import java.lang.reflect.Method;
 import java.util.Map;
