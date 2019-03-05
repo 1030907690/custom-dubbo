@@ -1,4 +1,4 @@
-package com.zzq.provider.api.bean;
+package com.zzq.provider.bean;
 
 import java.io.Serializable;
 
