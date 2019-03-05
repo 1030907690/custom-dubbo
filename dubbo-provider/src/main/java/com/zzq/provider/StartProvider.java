@@ -62,7 +62,7 @@ public class StartProvider {
 
             Object[] objects = new Object[list.size()];
             for (int i = 0; i < list.size(); i++) {
-                objects[i] = list.get(0);
+                objects[i] = list.get(i);
             }
 
 
