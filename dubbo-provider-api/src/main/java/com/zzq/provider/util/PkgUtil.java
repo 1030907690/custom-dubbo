@@ -1,4 +1,4 @@
-package com.zzq.consumer.util;
+package com.zzq.provider.util;
 
 import java.io.File;
 import java.io.IOException;

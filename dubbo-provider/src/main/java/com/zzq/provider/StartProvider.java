@@ -27,6 +27,7 @@ import java.util.*;
  */
 public class StartProvider {
 
+    private static Object lock = new Object();
 
     public static void main(String[] args) {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring-base.xml");
@@ -39,8 +40,14 @@ public class StartProvider {
 
         Dubbo dubbo = context.getBean(Dubbo.class);
 
+
         try {
-            String basePath = StartProvider.class.getResource("/").getPath();
+
+            synchronized (lock){
+                lock.wait();
+            }
+            lock.notify();
+        /*    String basePath = StartProvider.class.getResource("/").getPath();
             System.out.println("basePath = [" + basePath + "]");
 
             //扫描路径
@@ -75,7 +82,7 @@ public class StartProvider {
             //服务名称和实例对象的关系
             rpcServer.bind(objects);
 
-            rpcServer.publisher();
+            rpcServer.publisher();*/
 
         } catch (Exception e) {
             e.printStackTrace();

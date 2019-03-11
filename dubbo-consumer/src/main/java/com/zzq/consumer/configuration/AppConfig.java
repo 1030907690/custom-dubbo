@@ -18,7 +18,7 @@ import javax.annotation.Resource;
  * @date 2019/3/5 16:44
  */
 @Configuration
-@Import(ServiceScannerConfigurer.class)
+//@Import(ServiceScannerConfigurer.class)
 public class AppConfig {
 
 

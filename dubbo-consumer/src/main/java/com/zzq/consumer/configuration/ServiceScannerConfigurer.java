@@ -3,21 +3,17 @@ package com.zzq.consumer.configuration;
 import com.zzq.consumer.bean.MapperBean;
 import com.zzq.consumer.registry.IServiceDiscovery;
 import com.zzq.consumer.registry.ServiceDiscoveryImpl;
-import com.zzq.consumer.util.PkgUtil;
-import com.zzq.provider.api.ITestService;
+import com.zzq.provider.util.PkgUtil;
 import org.springframework.beans.MutablePropertyValues;
-import org.springframework.beans.factory.support.BeanDefinitionReaderUtils;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.beans.factory.support.GenericBeanDefinition;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.ImportBeanDefinitionRegistrar;
 import org.springframework.core.type.AnnotationMetadata;
 
 import java.util.Set;
 
 /**
- * 注入service
+ * 注入service 2.0.0版本的
  * **/
 public class ServiceScannerConfigurer implements ImportBeanDefinitionRegistrar {
 
