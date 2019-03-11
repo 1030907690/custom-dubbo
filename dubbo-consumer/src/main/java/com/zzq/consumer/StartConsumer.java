@@ -3,6 +3,7 @@ package com.zzq.consumer;
 import com.zzq.consumer.customtag.pojo.Dubbo;
 import com.zzq.consumer.registry.IServiceDiscovery;
 import com.zzq.consumer.registry.ServiceDiscoveryImpl;
+import com.zzq.provider.api.ISimpleService;
 import com.zzq.provider.api.ITestService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -51,6 +52,11 @@ public class StartConsumer {
         ITestService testService = context.getBean(ITestService.class);
         //System.out.println("testService "+ testService);
         String obj = testService.test("hello ");
+
+
         System.out.println(obj);
+        ISimpleService simpleService = context.getBean(ISimpleService.class);
+        System.out.println(simpleService.simpleTest("test"));
+
     }
 }
