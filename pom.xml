@@ -83,6 +83,120 @@
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
+
+
+
+            <!-- 分给线 start -->
+            <!--   &lt;!&ndash; 打包jar文件时，配置manifest文件，加入lib包的jar依赖 &ndash;&gt;-->
+            <!--  <plugin>
+                  <groupId>org.apache.maven.plugins</groupId>
+                  <artifactId>maven-jar-plugin</artifactId>
+                  <version>${maven-jar-plugin.version}</version>
+                  <configuration>
+                      <archive>
+                          <manifest>
+                              <addClasspath>true</addClasspath>
+                              <classpathPrefix>lib/</classpathPrefix>
+                              <mainClass>com.lyh.game.baccara.start.GameStart</mainClass>
+                          </manifest>
+                        &lt;!&ndash;  &lt;!&ndash; 添加第三方的jar
+                          <manifestEntries>
+                              <Class-Path>lib/class-util-1.0.jar lib/pool-executor-1.0.jar</Class-Path>
+                          </manifestEntries> &ndash;&gt;
+                      </archive>
+                  </configuration>
+              </plugin>-->
+            <!-- &lt;!&ndash; 拷贝依赖的jar包到lib目录 &ndash;&gt;-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>${maven-dependency-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>copy</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/lib</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- &lt;!&ndash; 自定义打zip包 &ndash;&gt;-->
+            <!--  <plugin>
+                  <groupId>org.apache.maven.plugins</groupId>
+                  <artifactId>maven-assembly-plugin</artifactId>
+                  <version>${maven-assembly-plugin.version}</version>
+                  <configuration>
+                      <descriptors>
+                          <descriptor>src/main/resources/assembly.xml</descriptor>
+                      </descriptors>
+                  </configuration>
+                  <executions>
+                      <execution>
+                          <id>make-assembly</id>
+                          <phase>package</phase>
+                          <goals>
+                              <goal>single</goal>
+                          </goals>
+                      </execution>
+                  </executions>
+              </plugin>-->
+
+            <!-- &lt;!&ndash; copy文件 &ndash;&gt;-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+
+                            <tasks>
+                                <echo message="copy  profile ......"/>
+                                <mkdir dir="${project.build.directory}/res"/>
+                                <!--  &lt;!&ndash; ${project.build.directory}这个是tartget目录 &ndash;&gt;
+                                  &lt;!&ndash; 这句话的意思是将file 里面的内容复制到 &ndash;&gt;
+                                  &lt;!&ndash;<copy overwrite="true" tofile="${project.build.directory}/res/logback.xml"
+                                        file="${project.basedir}/../res/logback.xml"/>&ndash;&gt;
+                                  &lt;!&ndash; copy 文件夹 &ndash;&gt;-->
+                                <copy todir="${project.build.directory}/res/">
+                                    <fileset dir="${project.basedir}/../res">
+                                        <include name="*.properties" />
+                                        <include name="*.xml" />
+                                        <include name="*.txt"/>
+                                        <include name="game-key.dat"/>
+                                    </fileset>
+                                </copy>
+
+                                <echo message="copy  profile done ......"/>
+
+
+                                <echo message="delete jar start"/>
+                                <delete file="${project.build.directory}/lib/netty-buffer-4.1.16.Final.jar"/>
+                                <delete file="${project.build.directory}/lib/netty-codec-4.1.16.Final.jar"/>
+                                <delete file="${project.build.directory}/lib/netty-codec-http-4.1.16.Final.jar"/>
+                                <delete file="${project.build.directory}/lib/netty-codec-socks-4.1.16.Final.jar"/>
+                                <delete file="${project.build.directory}/lib/netty-common-4.1.16.Final.jar"/>
+                                <delete file="${project.build.directory}/lib/netty-handler-4.1.16.Final.jar"/>
+                                <delete file="${project.build.directory}/lib/netty-handler-proxy-4.1.16.Final.jar"/>
+                                <delete file="${project.build.directory}/lib/netty-resolver-4.1.16.Final.jar"/>
+                                <delete file="${project.build.directory}/lib/netty-transport-4.1.16.Final.jar"/>
+                                <delete file="${project.build.directory}/lib/netty-transport-native-epoll-4.1.16.Final.jar"/>
+                                <delete file="${project.build.directory}/lib/netty-transport-native-unix-common-4.1.16.Final.jar"/>
+                                <echo message="delete profile end"/>
+
+                            </tasks>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <!--分割线 end-->
         </plugins>
         <!-- 打包过滤  resources部分的作用是，根据maven打包-P参数执行的属性-->
         <resources>
