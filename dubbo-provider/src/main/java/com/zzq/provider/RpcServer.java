@@ -46,10 +46,10 @@ public class RpcServer {
         for (String serviceName:handlerMap.keySet()){
             registryCenter.register(serviceName,serviceAddress);
         }
-
+        EventLoopGroup boosGroup = new NioEventLoopGroup();
+        EventLoopGroup workerGroup = new NioEventLoopGroup();
         try {
-            EventLoopGroup boosGroup = new NioEventLoopGroup();
-            EventLoopGroup workerGroup = new NioEventLoopGroup();
+
             //启动netty服务
             ServerBootstrap bootstrap = new ServerBootstrap();
             bootstrap.group(boosGroup);
@@ -83,9 +83,14 @@ public class RpcServer {
             int port = Integer.parseInt(addrs[1]);
             ChannelFuture future = bootstrap.bind(ip,port).sync();
             System.out.println("服务启动成功，等待客户端连接...");
+            //使用sync方法进行阻塞，等待服务端链路关闭之后Main函数才退出
             future.channel().closeFuture().sync();
         }catch (Exception e){
             e.printStackTrace();
+        }finally {
+            //退出，释放线程池资源
+            workerGroup.shutdownGracefully();
+            boosGroup.shutdownGracefully();
         }
 
 
