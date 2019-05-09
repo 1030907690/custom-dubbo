@@ -90,8 +90,6 @@ public class ZkWatcher implements Watcher {
             byte[] recivedata = getData(childrenPath);
             String recString = new String(recivedata, "UTF-8");
             System.out.println("receive the path:" + childrenPath + ":data:" + recString);
-            //做完了之后，删除该节点
-            deletNode(childrenPath, -1);
         }
     }
 
