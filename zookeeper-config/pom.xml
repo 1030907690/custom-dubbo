@@ -16,7 +16,7 @@
     <groupId>com.zzq.test</groupId>
     <artifactId>zookeeper-config</artifactId>
     <version>1.0-SNAPSHOT</version>
-
+    <packaging>jar</packaging>
 
     <name>zookeeper配置中心</name>
     <properties>
