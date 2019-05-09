@@ -17,4 +17,6 @@ public class ZNodeBean {
 
     private String path;
     private String value;
+
+    private String description;
 }
