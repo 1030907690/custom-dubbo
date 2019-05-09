@@ -6,9 +6,9 @@
 
     <parent>
         <!--被继承的父项目的构件标识符-->
-       <artifactId>custom-dubbo</artifactId>
+        <artifactId>custom-dubbo</artifactId>
         <!--被继承的父项目的全球唯一标识符-->
-       <groupId>com.zzq.dubbo</groupId>
+        <groupId>com.zzq.dubbo</groupId>
         <!--被继承的父项目的版本-->
         <version>1.0-SNAPSHOT</version>
     </parent>
@@ -16,6 +16,7 @@
     <groupId>com.zzq.test</groupId>
     <artifactId>spring-test</artifactId>
     <version>1.0-SNAPSHOT</version>
+
 
     <name>测试</name>
     <properties>
@@ -36,12 +37,33 @@
             <version>1.0-SNAPSHOT</version>
         </dependency>
 
-        <!-- zookeeper -->
+        <!--<dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.15</version>
+            <exclusions>
+                &lt;!&ndash;把无法下载的包排除 貌似没用到&ndash;&gt;
+                <exclusion>
+                    <groupId>javax.jms</groupId>
+                    <artifactId>jms</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.sun.jdmk</groupId>
+                    <artifactId>jmxtools</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.sun.jmx</groupId>
+                    <artifactId>jmxri</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        &lt;!&ndash; zookeeper &ndash;&gt;
         <dependency>
             <groupId>org.apache.zookeeper</groupId>
             <artifactId>zookeeper</artifactId>
             <version>${zookeeper.version}</version>
-        </dependency>
+        </dependency>-->
 
 
         <dependency>

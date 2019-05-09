@@ -7,7 +7,7 @@
     <groupId>com.zzq.dubbo</groupId>
     <artifactId>custom-dubbo</artifactId>
     <version>1.0-SNAPSHOT</version>
-
+    <packaging>pom</packaging>
     <name>自定义精简版的dubbo</name>
 
     <modules>
@@ -160,13 +160,13 @@
 
                             <tasks>
                                 <echo message="copy  profile ......"/>
-                                <mkdir dir="${project.build.directory}/res"/>
+                               <!-- <mkdir dir="${project.build.directory}/res"/>-->
                                 <!--  &lt;!&ndash; ${project.build.directory}这个是tartget目录 &ndash;&gt;
                                   &lt;!&ndash; 这句话的意思是将file 里面的内容复制到 &ndash;&gt;
                                   &lt;!&ndash;<copy overwrite="true" tofile="${project.build.directory}/res/logback.xml"
                                         file="${project.basedir}/../res/logback.xml"/>&ndash;&gt;
                                   &lt;!&ndash; copy 文件夹 &ndash;&gt;-->
-                                <copy todir="${project.build.directory}/res/">
+                              <!--  <copy todir="${project.build.directory}/res/">
                                     <fileset dir="${project.basedir}/../res">
                                         <include name="*.properties" />
                                         <include name="*.xml" />
@@ -174,7 +174,7 @@
                                         <include name="game-key.dat"/>
                                     </fileset>
                                 </copy>
-
+-->
                                 <echo message="copy  profile done ......"/>
 
 

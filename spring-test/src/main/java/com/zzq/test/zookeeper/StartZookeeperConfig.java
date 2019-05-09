@@ -1,7 +1,7 @@
 package com.zzq.test.zookeeper;
-
+/*
 import org.apache.zookeeper.CreateMode;
-import org.apache.zookeeper.ZooDefs;
+import org.apache.zookeeper.ZooDefs;*/
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.util.concurrent.ExecutorService;
@@ -26,8 +26,7 @@ public class StartZookeeperConfig {
             try {
                 ZookeeperClientUpgrade zk = new ZookeeperClientUpgrade(configureContainer);
                 zk.initialize();
-                zk.create("/testRootPath", "testRootData".getBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE,
-                        CreateMode.EPHEMERAL);
+                //zk.create("/testRootPath", "testRootData".getBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL);
                 //zk.getData("/testRootPath");
                 // zk.deletNode("/testRootPath",-1);
                 System.in.read();
