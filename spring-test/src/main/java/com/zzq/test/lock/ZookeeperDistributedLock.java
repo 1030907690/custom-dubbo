@@ -71,8 +71,9 @@ public class ZookeeperDistributedLock implements Lock {
         };
 
         client.subscribeDataChanges(LOCK_NODE,listener);
-        //目前想到2种办法阻塞  1、循环判断节点释放存在  2、使用CountDownLatch
-        //while(client.exists(LOCK_NODE)){}
+        //目前想到3种办法阻塞  1、循环判断节点释放存在  2、使用CountDownLatch 3、睡眠一会儿
+        //1. while(client.exists(LOCK_NODE)){}
+        //2.
         if(client.exists(LOCK_NODE)){
             try {
                 //cdl = new CountDownLatch(1);
@@ -82,6 +83,13 @@ public class ZookeeperDistributedLock implements Lock {
                 e.printStackTrace();
             }
         }
+
+        /* 3.
+        try {
+            Thread.sleep(10);
+        }catch (Exception e){
+            e.printStackTrace();
+        }*/
 
         client.unsubscribeDataChanges(LOCK_NODE,listener);
 
