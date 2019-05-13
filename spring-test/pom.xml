@@ -31,6 +31,19 @@
 
     <dependencies>
 
+<!--        <dependency>
+            <groupId>com.github.sgroschupf</groupId>
+            <artifactId>zkclient</artifactId>
+            <version>0.1</version>
+        </dependency>-->
+
+        <!--zkclient有2个版本,其中第二个系列包含了从0.1~0.10的版本。查看dubbo的源代码，我们可以看到，dubbo采用了第一个系列的0.1版本-->
+        <dependency>
+            <groupId>com.101tec</groupId>
+            <artifactId>zkclient</artifactId>
+            <version>0.10</version>
+        </dependency>
+
         <dependency>
             <groupId>com.zzq.test</groupId>
             <artifactId>zookeeper-config</artifactId>
