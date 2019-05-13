@@ -24,7 +24,7 @@ public class ZookeeperLockTest {
 
 
     static Lock lock = new ZookeeperDistributedLock();
-    private static CountDownLatch COUNT_DOWN_LATCH = new CountDownLatch(threadCount); //为保证30个线程同时并发运行
+    private static CountDownLatch COUNT_DOWN_LATCH = new CountDownLatch(threadCount); //为保证threadCount个线程同时并发运行
 
     //等待线程全部执行完
     private static CountDownLatch COUNT_DOWN_LATCH_WAIT = new CountDownLatch(threadCount);
@@ -44,7 +44,7 @@ public class ZookeeperLockTest {
 
         AtomicInteger count = new AtomicInteger(0);
          /* 测试并发问题*/
-        for (int i = 0; i < threadCount; i++) {//循环开30个线程
+        for (int i = 0; i < threadCount; i++) {//循环开threadCount个线程
 
             new Thread(new Runnable() {
                 @Override
