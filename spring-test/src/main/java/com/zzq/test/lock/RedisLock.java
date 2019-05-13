@@ -1,5 +1,4 @@
-/*
-package com.zzq.test.lock;
+/*package com.lyh.game.logical.lock;
 
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.stereotype.Component;
@@ -11,7 +10,6 @@ import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
-
 */
 /**
  * @author Zhou Zhong Qing
@@ -19,8 +17,9 @@ import java.util.concurrent.locks.Lock;
  * @Package ${package_name}
  * @Description: redis锁
  * @date 2019/2/17 15:14
- *//*
+ */
 
+/*
 @Component
 public class RedisLock implements Lock {
 
