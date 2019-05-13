@@ -29,7 +29,7 @@ public class ZookeeperLockTest {
     //等待线程全部执行完
     private static CountDownLatch COUNT_DOWN_LATCH_WAIT = new CountDownLatch(threadCount);
 
-    static Map<String, Order> map = new ConcurrentHashMap<>();
+    static Map<String, Order> map = new HashMap<>();
 
     public static void main(String[] args) {
         Order order = new Order();
