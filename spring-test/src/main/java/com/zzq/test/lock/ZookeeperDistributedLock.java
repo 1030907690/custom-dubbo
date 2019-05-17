@@ -75,8 +75,8 @@ public class ZookeeperDistributedLock implements Lock {
         //1. while(client.exists(LOCK_NODE)){}
         //2.
         if(client.exists(LOCK_NODE)){
+            //cdl = new CountDownLatch(1);
             try {
-                //cdl = new CountDownLatch(1);
                 //阻塞
                 cdl.await();
             }catch (InterruptedException e){
@@ -99,7 +99,8 @@ public class ZookeeperDistributedLock implements Lock {
     @Override
     public boolean tryLock() {
         try {
-            client.createPersistent(LOCK_NODE);
+            //client.createPersistent(LOCK_NODE);
+            client.createEphemeral(LOCK_NODE);
             //加锁成功
             return true;
         } catch (ZkNodeExistsException e) {
