@@ -23,7 +23,8 @@ public class ZookeeperLockTest {
     private static int threadCount = 100;
 
 
-    static Lock lock = new ZookeeperDistributedLock();
+    //static Lock lock = new ZookeeperDistributedLock();
+    static Lock lock = new ZookeeperImproveLock();
     private static CountDownLatch COUNT_DOWN_LATCH = new CountDownLatch(threadCount); //为保证threadCount个线程同时并发运行
 
     //等待线程全部执行完
