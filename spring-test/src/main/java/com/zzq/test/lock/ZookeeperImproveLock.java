@@ -30,11 +30,6 @@ public class ZookeeperImproveLock implements Lock {
 
     private ZkClient client = new ZkClient("localhost:2181", 1000, 1000, new SerializableSerializer());
 
-    String beforePath;
-
-    String currentPath;
-
-    private CountDownLatch cdl;
 
     public ZookeeperImproveLock() {
         if (!client.exists(LOCK_NODE)) {
@@ -46,17 +41,18 @@ public class ZookeeperImproveLock implements Lock {
     @Override
     public void lock() {
         if (!tryLock()) {
-            waitForLock();
-            lock();
+           // waitForLock();
+            //lock();
         } else {
-            log.info(Thread.currentThread() + "获得锁");
+            System.out.println(Thread.currentThread() + "获得锁");
         }
     }
 
     /***
      * 等待释放
      * */
-    private void waitForLock() {
+    private void waitForLock(String beforePath) {
+        final CountDownLatch cdl = new CountDownLatch(1);
         IZkDataListener listener = new IZkDataListener() {
             @Override
             public void handleDataChange(String s, Object o) throws Exception {
@@ -65,7 +61,7 @@ public class ZookeeperImproveLock implements Lock {
 
             @Override
             public void handleDataDeleted(String s) throws Exception {
-                log.info("数据删除事件");
+               // System.out.println("数据删除事件");
                 if (null != cdl) {
                     cdl.countDown();
                 }
@@ -75,7 +71,6 @@ public class ZookeeperImproveLock implements Lock {
         client.subscribeDataChanges(beforePath, listener);
 
         if (client.exists(LOCK_NODE)) {
-            cdl = new CountDownLatch(1);
             try {
                 //阻塞
                 cdl.await();
@@ -92,28 +87,33 @@ public class ZookeeperImproveLock implements Lock {
     @Override
     public boolean tryLock() {
 
-        if (currentPath == null || currentPath.length() <= 0) {
-            currentPath = this.client.createEphemeralSequential(LOCK_NODE + "/", "lock");
-            System.out.println("----------------- " + currentPath);
-        }
+
+        String currentPath = this.client.createEphemeralSequential(LOCK_NODE + "/", "lock");
+
 
         List<String> childrens = client.getChildren(LOCK_NODE);
         Collections.sort(childrens);
 
-        System.out.println("currentPath :" + currentPath + " LOCK_NODE + \"/\" + childrens.get(0))" + LOCK_NODE + "/" + childrens.get(0));
-        ;
+        //System.out.println("currentPath :" + currentPath + " LOCK_NODE + \"/\" + childrens.get(0))" + LOCK_NODE + "/" + childrens.get(0));
+        String beforePath = null;
         if (currentPath.equals(LOCK_NODE + "/" + childrens.get(0))) {
             return true;
         } else {
             int wz = Collections.binarySearch(childrens, currentPath.substring(6));
             beforePath = LOCK_NODE + "/" + childrens.get(wz - 1);
+            //System.out.println("beforePath "+ beforePath);
+            waitForLock(beforePath);
         }
         return false;
     }
 
     @Override
     public void unlock() {
-        client.delete(currentPath);
+
+        List<String> childrens = client.getChildren(LOCK_NODE);
+        Collections.sort(childrens);
+        //System.out.println("数据删除 "+LOCK_NODE +  "/" + childrens.get(0));
+        client.delete(LOCK_NODE +  "/" + childrens.get(0));
     }
 
     @Override
