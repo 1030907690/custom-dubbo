@@ -40,16 +40,13 @@ public class ZookeeperImproveLock implements Lock {
 
     @Override
     public void lock() {
-        if (!tryLock()) {
-           // waitForLock();
-            //lock();
-        } else {
-            System.out.println(Thread.currentThread() + "获得锁");
-        }
+        tryLock();
+
     }
 
     /***
      * 等待释放
+     *  把前一个加入监听,等待前一个释放
      * */
     private void waitForLock(String beforePath) {
         final CountDownLatch cdl = new CountDownLatch(1);
@@ -61,7 +58,7 @@ public class ZookeeperImproveLock implements Lock {
 
             @Override
             public void handleDataDeleted(String s) throws Exception {
-               // System.out.println("数据删除事件");
+                // System.out.println("数据删除事件");
                 if (null != cdl) {
                     cdl.countDown();
                 }
@@ -94,14 +91,13 @@ public class ZookeeperImproveLock implements Lock {
         List<String> childrens = client.getChildren(LOCK_NODE);
         Collections.sort(childrens);
 
-        //System.out.println("currentPath :" + currentPath + " LOCK_NODE + \"/\" + childrens.get(0))" + LOCK_NODE + "/" + childrens.get(0));
-        String beforePath = null;
         if (currentPath.equals(LOCK_NODE + "/" + childrens.get(0))) {
             return true;
         } else {
             int wz = Collections.binarySearch(childrens, currentPath.substring(6));
-            beforePath = LOCK_NODE + "/" + childrens.get(wz - 1);
+            String beforePath = LOCK_NODE + "/" + childrens.get(wz - 1);
             //System.out.println("beforePath "+ beforePath);
+            //把前一个加入监听,等待前一个释放
             waitForLock(beforePath);
         }
         return false;
@@ -113,7 +109,7 @@ public class ZookeeperImproveLock implements Lock {
         List<String> childrens = client.getChildren(LOCK_NODE);
         Collections.sort(childrens);
         //System.out.println("数据删除 "+LOCK_NODE +  "/" + childrens.get(0));
-        client.delete(LOCK_NODE +  "/" + childrens.get(0));
+        client.delete(LOCK_NODE + "/" + childrens.get(0));
     }
 
     @Override
