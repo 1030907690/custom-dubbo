@@ -1,7 +1,7 @@
-package com.zzq.test.queue;
+package com.zzq.test.queuetest;
 
-import com.alibaba.fastjson.JSONObject;
-
+import com.zzq.test.queue.IZookeeperWatcherNotify;
+import com.zzq.test.queue.ZookeeperListenser;
 import com.zzq.test.utils.Constants;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.recipes.cache.TreeCacheEvent;
