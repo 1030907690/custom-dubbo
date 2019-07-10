@@ -45,6 +45,7 @@ public class RpcServerHandler extends ChannelInboundHandlerAdapter {
         }
         ctx.write(result);
         ctx.flush();
+        //关闭客户端Channel连接
         ctx.close();
 
     }
