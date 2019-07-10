@@ -78,13 +78,14 @@ public class RpcClientProxy {
                                 System.out.println("host " + host + " prot " + port);
                                 ChannelFuture future = b.connect(host,port).sync();
                                 future.channel().writeAndFlush(request);
+                                //阻塞，直到  Channel 关闭
                                 future.channel().closeFuture().sync();
-                                shutdown(group);
                                 return rpcProxyHandler.getRespone();
                             }catch (Exception e){
                                 e.printStackTrace();
                             }finally {
-
+                                // 关闭线程池并且  释放所有的资源
+                                shutdown(group);
                             }
                             return rpcProxyHandler.getRespone();
                         }
