@@ -52,7 +52,7 @@ public class RpcServer {
 
             //启动netty服务
             ServerBootstrap bootstrap = new ServerBootstrap();
-            bootstrap.group(boosGroup);
+            bootstrap.group(boosGroup,workerGroup);
             bootstrap.channel(NioServerSocketChannel.class);
 
             //springmvc web.xml
