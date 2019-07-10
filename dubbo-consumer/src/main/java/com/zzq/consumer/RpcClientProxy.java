@@ -18,6 +18,9 @@ import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
+/**
+ * jdk的代理
+ * */
 public class RpcClientProxy {
 
     private IServiceDiscovery serviceDiscovery;
