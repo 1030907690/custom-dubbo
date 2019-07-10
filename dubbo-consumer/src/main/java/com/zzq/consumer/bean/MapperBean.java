@@ -1,5 +1,6 @@
 package com.zzq.consumer.bean;
 
+import com.zzq.consumer.CglibProxyHandler;
 import com.zzq.consumer.RpcClientProxy;
 import com.zzq.consumer.registry.IServiceDiscovery;
 import com.zzq.provider.api.ITestService;
@@ -26,7 +27,7 @@ public class MapperBean  implements FactoryBean  {
     @Nullable
     @Override
     public Object getObject() throws Exception {
-        return new RpcClientProxy(serviceDiscovery).create(mapperInterface);
+        return new CglibProxyHandler(serviceDiscovery).create(mapperInterface);
     }
 
     public IServiceDiscovery getServiceDiscovery() {
