@@ -14,6 +14,7 @@ import org.springframework.beans.factory.xml.ParserContext;
 import org.springframework.util.StringUtils;
 import org.w3c.dom.Element;
 
+import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -118,7 +119,7 @@ public class DubboBeanDefinitionParser extends AbstractSingleBeanDefinitionParse
 		}
 		IRegistryCenter registryCenter = new RegistryCenterImpl(address);
 		//服务发布,监听端口
-		RpcServer rpcServer = new RpcServer(registryCenter, "127.0.0.1:"+port);
+		RpcServer rpcServer = new RpcServer(registryCenter, getIntranetIp()+":"+port);
 
 		//一个服务名称可能对应多个不同实现
 		//服务名称和实例对象的关系
@@ -126,4 +127,15 @@ public class DubboBeanDefinitionParser extends AbstractSingleBeanDefinitionParse
 
 		rpcServer.publisher();
 	}
+	/**
+	 * 获取内网ip
+	 */
+	public static String getIntranetIp() {
+		try {
+			return InetAddress.getLocalHost().getHostAddress();
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
 }
