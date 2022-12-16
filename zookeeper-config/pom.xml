@@ -20,7 +20,7 @@
 
     <name>zookeeper配置中心</name>
     <properties>
-        <spring.version>5.0.8.RELEASE</spring.version>
+        <spring.version>5.2.20.RELEASE</spring.version>
         <zookeeper.version>3.4.5</zookeeper.version>
         <fastjson.version>1.2.47</fastjson.version>
         <lombok.version>1.18.2</lombok.version>
